@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>hbg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #eee;
+    }
+
+    .hbg-menu {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      width: 60px;
+      height: 50px;
+      background-color: #21D4FD;
+      background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+      transition: all 300ms 0s ease;
+      z-index: 1;
+    }
+
+    .hbg-menu-open {
+      top: -300px;
+      left: -300px;
+      width: 600px;
+      height: 600px;
+      border-radius: 300px;
+    }
+
+    .hbg-menu-contents {
+      font-family: 'Arial',sans-serif;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .hbg-menu-contents-open {
+      animation: fadeIn 1s ease 0s 1 normal;
+      display: inherit;
+      position: fixed;
+      top: 75px;
+      left: 15px;
+      width: 300px;
+      height: 200px;
+      z-index: 2;
+    }
+
+    .hbg-menu-contents-close {
+      color: #fff;
+      font-size: 50px;
+      margin-left: 25px;
+    }
+
+    .hbg-menu-contents-menu1 {
+      color: #fff;
+      text-decoration: underline;
+      margin-left: 70px;
+    }
+
+    .hbg-menu-contents-menu2 {
+      color: #fff;
+      text-decoration: underline;
+      margin-left: 40px;
+    }
+
+    .hbg-menu-contents-menu3 {
+      color: #fff;
+      text-decoration: underline;
+      margin-left: 10px;
+    }
+
+    .hbg,
+    .hbg span {
+      display: inline-block;
+      box-sizing: border-box;
+    }
+
+    .hbg {
+      margin: 10px;
+      position: relative;
+      width: 40px;
+      height: 30px;
+    }
+
+    .hbg span {
+      position: absolute;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    .hbg-1 {
+      top: 0;
+    }
+
+    .hbg-2 {
+      top: 13px;
+    }
+
+    .hbg-3 {
+      bottom: 0;
+    }
+
+    .hbg.active {
+      animation: fadeIn 1s ease 0s 1 normal;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+    }
+
+    .hbg.active .hbg-1 {
+      -webkit-transform: translateY(13px) rotate(-45deg);
+      transform: translateY(13px) rotate(-45deg);
+    }
+
+    .hbg.active .hbg-2 {
+      opacity: 0;
+    }
+
+    .hbg.active .hbg-3 {
+      -webkit-transform: translateY(-14px) rotate(45deg);
+      transform: translateY(-14px) rotate(45deg);
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0
+      }
+      100% {
+        opacity: 1
+      }
+    }
+
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 0
+      }
+      100% {
+        opacity: 1
+      }
+    }
+
+    .title {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      font-size: 2vw;
+      color: #a5a5a5;
+      font-family: 'Courier', sans-serif;
+    }
+
+    .title-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      -webkit- transform: translateY(-50%) translateX(-50%);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="hbg-menu">
+    <a class="hbg">
+      <span class="hbg-1"></span>
+      <span class="hbg-2"></span>
+      <span class="hbg-3"></span>
+    </a>
+  </div>
+
+  <div class="hbg-menu-contents">
+    <h2 class="hbg-menu-contents-menu1">menu1</h2>
+    <h2 class="hbg-menu-contents-menu2">menu2</h2>
+    <h2 class="hbg-menu-contents-menu3">menu3</h2>
+  </div>
+
+  <div class="title">
+    <div class="title-text">
+      I am a hamburger menu sample.
+    </div>
+  </div>
+
+  <script>
+    const $menu = $(".hbg-menu");
+    const $hbg = $(".hbg");
+    const $contents = $(".hbg-menu-contents");
+
+    $menu.on("click", () => {
+      $menu.toggleClass("hbg-menu-open");
+      $contents.toggleClass("hbg-menu-contents-open");
+      $hbg.toggleClass("active");
+    });
+  </script>
+</body>
